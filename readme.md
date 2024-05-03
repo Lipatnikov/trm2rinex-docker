@@ -9,9 +9,9 @@ The Trimble utility can be found at official Trimble page : https://geospatial.t
 **For intellectual property reasons, unless Trimble provides me with a written authorization to do so, I will not provide a pre-build docker image because it would contain the Trimble binaries and I'm not explicitely allowed to redistribute them.
 Even if no specific license terms are displayed on Trimble page or when installing the software manually on a regular Windows machine.**
 
-The image has been successfully built and tested using [Wine 6.22](https://github.com/wine-mirror/wine/commit/986254d6c17ee1e5fb3aed6effcf2766bf1e787e) release and the following Trimble required binaries for version 3.14 of Trimble [convertToRinex](https://geospatial.trimble.com/trimble-rinex-converter) :
+The image has been successfully built and tested using [Wine 6.22](https://github.com/wine-mirror/wine/commit/986254d6c17ee1e5fb3aed6effcf2766bf1e787e) release and the following Trimble required binaries for version 3.15 of Trimble [convertToRinex](https://geospatial.trimble.com/trimble-rinex-converter) :
 
-- https://dl.trimble.com/osg/survey/gpsconfigfiles/21.9.27/trimblecfgupdate.exe
+- https://dl.trimble.com/osg/survey/gpsconfigfiles/24.1.11/trimblecfgupdate.exe
 - https://trl.trimble.com/docushare/dsweb/Get/Document-1073640/convertToRinexv3.15.0.msi
 
 If they are still available at time you build the image, then they will be downloaded and used automatically. Otherwise you may need to get the manually from another source and modify the Dockerfile around lines 213 and 214 to change the source of the files.

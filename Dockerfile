@@ -6,7 +6,7 @@
 # Official Trimble tool page : https://geospatial.trimble.com/trimble-rinex-converter
 #
 # Tested with the following versions of trimble required binaries :
-# https://dl.trimble.com/osg/survey/gpsconfigfiles/21.9.27/trimblecfgupdate.exe
+# https://dl.trimble.com/osg/survey/gpsconfigfiles/24.1.11/trimblecfgupdate.exe
 # https://trl.trimble.com/docushare/dsweb/Get/Document-1073640/convertToRinexv3.15.0.msi
 #
 # if still available at time when you'll build the image, the binaries will be
@@ -210,7 +210,7 @@ RUN ldconfig
 # Download mono installer
 COPY download_mono.sh /tmp/download_mono.sh
 
-ADD --chown=${USER_UID}:${USER_GID} https://dl.trimble.com/osg/survey/gpsconfigfiles/21.9.27/trimblecfgupdate.exe /tmp
+ADD --chown=${USER_UID}:${USER_GID} https://dl.trimble.com/osg/survey/gpsconfigfiles/24.1.11/trimblecfgupdate.exe /tmp
 ADD --chown=${USER_UID}:${USER_GID} https://trl.trimble.com/docushare/dsweb/Get/Document-1073640/convertToRinexv3.15.0.msi /tmp
 
 RUN chmod 755 /tmp/download_mono.sh \
@@ -230,8 +230,7 @@ USER root
 COPY clean.sh /home/${USER_NAME}/clean.sh
 RUN chmod 755 /home/${USER_NAME}/clean.sh
 RUN rm -rf /home/${USER_NAME}/.wine/drive_c/windows/Installer \
-    && rm -rf /tmp/* \
-    && /home/${USER_NAME}/clean.sh ${USER_NAME} ${WINE_INSTALL_PREFIX}
+     && rm -rf /tmp/* 
 
 #
 # Stage 3 : Final stage : use the minimal build filesystem in one step to get
