@@ -7,7 +7,7 @@
 #
 # Tested with the following versions of trimble required binaries :
 # https://dl.trimble.com/osg/survey/gpsconfigfiles/21.9.27/trimblecfgupdate.exe
-# https://trl.trimble.com/dscgi/ds.py/Get/File-869391/convertToRinex314.msi
+# https://trl.trimble.com/docushare/dsweb/Get/Document-1073640/convertToRinexv3.15.0.msi
 #
 # if still available at time when you'll build the image, the binaries will be
 # automatically downloaded. Otherwise you may need to get the manually from
@@ -211,7 +211,7 @@ RUN ldconfig
 COPY download_mono.sh /tmp/download_mono.sh
 
 ADD --chown=${USER_UID}:${USER_GID} https://dl.trimble.com/osg/survey/gpsconfigfiles/21.9.27/trimblecfgupdate.exe /tmp
-ADD --chown=${USER_UID}:${USER_GID} https://trl.trimble.com/dscgi/ds.py/Get/File-869391/convertToRinex314.msi /tmp
+ADD --chown=${USER_UID}:${USER_GID} https://trl.trimble.com/docushare/dsweb/Get/Document-1073640/convertToRinexv3.15.0.msi /tmp
 
 RUN chmod 755 /tmp/download_mono.sh \
     && /tmp/download_mono.sh "$([[ "$(${WINE_INSTALL_PREFIX}/bin/wine --version)" =~ .*([0-9]{1}.[0-9]{2}) ]] &&  echo ${BASH_REMATCH[1]})" 
@@ -224,7 +224,7 @@ RUN wine /tmp/trimblecfgupdate.exe /s /x /b"Z:\\tmp" /v"/qn" 2>/dev/null \
     && sleep ${DELAY_BETWEEN_INSTALL} \
     && wine cmd /c "msiexec /i Z:\\tmp\\TrimbleCFGUpdate.msi ProductLanguage=\"1033\" /quiet" 2>/dev/null \
     && sleep ${DELAY_BETWEEN_INSTALL} \
-    && wine cmd /c "msiexec /i Z:\\tmp\\convertToRinex314.msi ProductLanguage=\"1033\" /quiet" 2>/dev/null
+    && wine cmd /c "msiexec /i Z:\\tmp\\convertToRinexv3.15.0.msi ProductLanguage=\"1033\" /quiet" 2>/dev/null
 
 USER root
 COPY clean.sh /home/${USER_NAME}/clean.sh
